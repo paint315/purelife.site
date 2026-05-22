@@ -154,4 +154,22 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Ограничение выбора времени, если дата сегодня
+    const dateInput = document.querySelector('input[name="date"]');
+    const timeInput = document.querySelector('input[name="time"]');
+
+    function updateTimeMin() {
+        if (dateInput.value === new Date().toISOString().split('T')[0]) {
+            const now = new Date();
+            const hours = now.getHours().toString().padStart(2, '0');
+            const minutes = now.getMinutes().toString().padStart(2, '0');
+            timeInput.min = `${hours}:${minutes}`;
+        } else {
+            timeInput.min = '11:00'; // или оставить без ограничения
+        }
+    }
+
+    dateInput.addEventListener('change', updateTimeMin);
+    updateTimeMin();
 });

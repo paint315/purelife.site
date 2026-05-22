@@ -167,6 +167,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     elseif (!isWorkTime($time)) {
         $error = 'Время уборки должно быть с 11:00 до 19:00.';
     }
+    elseif ($date == date('Y-m-d') && $time < date('H:i')) {
+        $error = 'Выбранное время уже прошло. Пожалуйста, выберите будущее время.';
+    }
     else {
         $rescheduledFrom = $_SESSION['rescheduled_from'] ?? null;
         $orderId = createOrder($pdo, $_SESSION['user_id'], $servicesData, $address, $date, $time, $comment, $propertyType, $employeeId, $rescheduledFrom, $paymentMethod);
@@ -174,9 +177,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($orderId) {
             unset($_SESSION['rescheduled_from']);
             
-            // Если выбран онлайн-платёж, перенаправляем на страницу оплаты
             if ($paymentMethod === 'online') {
-                // Сохраняем ID заказа в сессию для страницы оплаты
                 $_SESSION['payment_order_id'] = $orderId;
                 header('Location: /payment.php');
                 exit;
