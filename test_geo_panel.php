@@ -64,6 +64,7 @@ $testCity = $_SESSION['test_city'] ?? null;
         <a href="?action=set_city&city=Moscow"><button>Москва (запрещён)</button></a>
         <a href="?action=set_city&city=Kazan"><button>Казань (запрещён)</button></a>
         <a href="?action=set_city&city=Novosibirsk"><button>Новосибирск (запрещён)</button></a>
+        <a href="?action=set_city&city=unknown"><button>unknown</button></a>
         <a href="?action=set_city&city=New%20York"><button>Нью-Йорк (запрещён)</button></a>
     </div>
     
