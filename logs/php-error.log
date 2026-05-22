@@ -1,0 +1,15 @@
+[19-May-2026 21:33:21 Europe/Moscow] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/c/cm903759/public_html/includes/header.php on line 15
+[19-May-2026 21:33:23 Europe/Moscow] PHP Parse error:  syntax error, unexpected token "<", expecting end of file in /home/c/cm903759/public_html/includes/header.php on line 15
+[19-May-2026 21:40:06 Europe/Moscow] PHP Parse error:  syntax error, unexpected token "function", expecting ";" in /home/c/cm903759/public_html/includes/geo.php on line 26
+[21-May-2026 12:55:03 Europe/Moscow] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away in /home/c/cm903759/public_html/includes/functions.php:42
+Stack trace:
+#0 /home/c/cm903759/public_html/includes/functions.php(42): PDO->query('SELECT * FROM s...')
+#1 /home/c/cm903759/public_html/index.php(8): getAllServices(Object(PDO))
+#2 {main}
+  thrown in /home/c/cm903759/public_html/includes/functions.php on line 42
+[22-May-2026 08:36:24 Europe/Moscow] PHP Fatal error:  Uncaught PDOException: SQLSTATE[HY000]: General error: 2006 MySQL server has gone away in /home/c/cm903759/public_html/includes/functions.php:42
+Stack trace:
+#0 /home/c/cm903759/public_html/includes/functions.php(42): PDO->query('SELECT * FROM s...')
+#1 /home/c/cm903759/public_html/index.php(8): getAllServices(Object(PDO))
+#2 {main}
+  thrown in /home/c/cm903759/public_html/includes/functions.php on line 42

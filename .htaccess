@@ -1,0 +1,37 @@
+RewriteEngine On
+
+# ===== Исключение для файлов выбора города =====
+RewriteRule ^set_city\.php$ - [L]
+
+# ===== СКРЫВАЕМ .php =====
+# Перенаправляем старые URL с .php на без .php
+RewriteCond %{THE_REQUEST} \s([^.]+)\.php [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Внутреннее преобразование обратно в .php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*?)/?$ $1.php [L]
+
+# ===== ЧПУ для услуг и профиля =====
+RewriteRule ^service/([0-9]+)$ services.php?id=$1 [L,QSA]
+RewriteRule ^profile/([a-z]+)$ profile.php?page=$1 [L,QSA]
+
+# ===== Защита папок =====
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^uploads/ - [F,L]
+RewriteRule ^sql/ - [F,L]
+
+# ===== Страница ошибки 404 =====
+ErrorDocument 404 /404
+
+# ===== Запрет просмотра папок =====
+Options -Indexes
+
+# ===== Кодировка =====
+AddDefaultCharset UTF-8
+
+# ===== Защита файла =====
+<FilesMatch "^(backup_db|cleanup_tokens)\.php$">
+    Require all denied
+</FilesMatch>
