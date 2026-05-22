@@ -5,19 +5,6 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 function getCityByIp($ip = null) {
-    // ===== РЕЖИМ ТЕСТИРОВАНИЯ =====
-    if (isset($_GET['test_city'])) {
-        $testCity = $_GET['test_city'];
-        $_SESSION['test_city'] = $testCity;
-        return $testCity;
-    }
-    
-    if (isset($_SESSION['test_city'])) {
-        return $_SESSION['test_city'];
-    }
-    // Добавьте ?test_city=... в строку поиска
-    // ===== КОНЕЦ РЕЖИМА ТЕСТИРОВАНИЯ =====
-    
     if ($ip === null) {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
