@@ -498,7 +498,7 @@ require_once 'includes/header.php';
                         </td>
 
                         <!-- Действия -->
-                        <td style="white-space: nowrap;">
+                        <td>
                             <button type="submit" name="update_order" class="btn-small">Сохранить</button>
                             <a href="view_order.php?id=<?= $order['id'] ?>" class="btn-small">Детали</a>
                         </td>
