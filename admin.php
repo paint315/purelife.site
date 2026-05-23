@@ -514,6 +514,7 @@ require_once 'includes/header.php';
         <h2>Управление услугами</h2>
         <form method="POST" class="add-form">
             <?= csrf_field() ?>
+            <p style="margin-bottom: 10px;">Добавление услуги</p>
             <input type="text" name="name" placeholder="Название услуги" required>
             <textarea name="description" placeholder="Описание"></textarea>
             <input type="number" name="price" placeholder="Цена (руб)" step="100" required>
