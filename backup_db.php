@@ -9,7 +9,7 @@ $dbPass = 'KsJZ7bEM';
 $dbName = 'cm903759_purelife';
 $backupFile = $backupDir . 'db_backup_' . date('Y-m-d_H-i-s') . '.sql';
 
-$command = "mysqldump --host=$dbHost --user=$dbUser --password=$dbPass $dbName > $backupFile";
+$command = "mysqldump --host=$dbHost --user=$dbUser --password=$dbPass --no-tablespaces $dbName > $backupFile";
 system($command, $output);
 
 // Оставляем только последние 15 копий

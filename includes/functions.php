@@ -439,10 +439,10 @@ function updatePassword($pdo, $userId, $newPassword) {
     return $stmt->execute([$hash, $userId]);
 }
 
-// ========== ОЧИСТКА ТОКЕНОВ ==========
+// ========== ОЧИСТКА ТОКЕНОВ И НЕВЕРЕФИЦИРОВАННЫХ ==========
 
 function cleanupExpiredVerificationTokens($pdo) {
-    $stmt = $pdo->prepare("UPDATE users SET verification_token = NULL, verification_token_expires_at = NULL, last_verification_sent = NULL WHERE verification_token_expires_at < NOW() AND is_verified = 0");
+    $stmt = $pdo->prepare("DELETE FROM users WHERE verification_token_expires_at < NOW() AND is_verified = 0");
     $stmt->execute();
 }
 

@@ -8,7 +8,8 @@ require_once 'includes/functions.php';
 $error = '';
 $success = '';
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST')
+{
     $email = sanitize_email($_POST['email']);
     $password = $_POST['password'];
     $name = sanitize_string($_POST['name']);
@@ -102,10 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['pending_verification_email'] = $email;
             header('Location: /login.php?waiting_verification=1');
             exit;
-        } else {
-            $error = 'Ошибка регистрации. Возможно, email уже занят.';
-        }
-        }
+        } else { $error = 'Ошибка регистрации. Возможно, email уже занят.';}
     }
 }
 
