@@ -1123,13 +1123,6 @@ footer {
     text-decoration: underline;
     padding: 0;
 }
-.comment-box {
-    display: none;
-    margin-top: 5px;
-    padding: 5px;
-    background: #f1f5f9;
-    border-radius: 5px;
-}
 
 /* Кнопка отмены в заказе */
 .btn-cancel-order {
@@ -1193,17 +1186,6 @@ footer {
     padding: 4px 8px;
     border-radius: 4px;
     color: #e65100;
-}
-
-/* Стили для блока переноса заказа (new-order.php) */
-.info-reschedule {
-    background: #e6f7f2;
-    padding: 10px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-}
-.info-reschedule strong {
-    font-weight: bold;
 }
 
 /* Стили для меток small */

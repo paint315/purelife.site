@@ -379,7 +379,7 @@ require_once 'includes/header.php';
                 </select>
                 <label>Дата:</label>
                 <input class="filter-center" type="date" name="order_date" value="<?= h($order_date_filter) ?>">
-                <button type="submit" class="btn-small">Фильтровать</button>
+                <button type="submit" class="btn-small details-btn">Фильтровать</button>
                 <a href="?action=orders" class="btn-small cancel">Сбросить</a>
             </form>
         </div>
@@ -584,7 +584,7 @@ require_once 'includes/header.php';
                     <option value="manager" <?= $user_role_filter == 'manager' ? 'selected' : '' ?>>Менеджер</option>
                     <option value="admin" <?= $user_role_filter == 'admin' ? 'selected' : '' ?>>Администратор</option>
                 </select>
-                <button type="submit" class="btn-small">Найти</button>
+                <button type="submit" class="btn-small details-btn">Найти</button>
                 <a href="?action=users" class="btn-small cancel">Сбросить</a>
             </form>
         </div>
@@ -661,7 +661,7 @@ require_once 'includes/header.php';
                     <option value="rating_desc" <?= $employee_sort == 'rating_desc' ? 'selected' : '' ?>>По убыванию (высший)</option>
                     <option value="rating_asc" <?= $employee_sort == 'rating_asc' ? 'selected' : '' ?>>По возрастанию (низший)</option>
                 </select>
-                <button type="submit" class="btn-small">Применить</button>
+                <button type="submit" class="btn-small details-btn">Применить</button>
                 <a href="?action=employees" class="btn-small cancel">Сбросить</a>
             </form>
         </div>
@@ -790,7 +790,7 @@ require_once 'includes/header.php';
                     <option value="approved" <?= $review_status_filter == 'approved' ? 'selected' : '' ?>>Одобрен</option>
                     <option value="rejected" <?= $review_status_filter == 'rejected' ? 'selected' : '' ?>>Отклонён</option>
                 </select>
-                <button type="submit" class="btn-small">Фильтровать</button>
+                <button type="submit" class="btn-small details-btn">Фильтровать</button>
                 <a href="?action=reviews" class="btn-small cancel">Сбросить</a>
             </form>
         </div>
