@@ -390,23 +390,51 @@ function getTotalServices($pdo) {
 function renderPagination($currentPage, $totalPages, $baseUrl, $paramName = 'page') {
     if ($totalPages <= 1) return '';
     $html = '<div class="pagination">';
+    
+    // Предыдущая страница
     if ($currentPage > 1) {
         $html .= '<a href="' . $baseUrl . '&' . $paramName . '=' . ($currentPage - 1) . '" class="pagination-link">&laquo; Предыдущая</a>';
     } else {
         $html .= '<span class="pagination-link disabled">&laquo; Предыдущая</span>';
     }
-    for ($i = 1; $i <= $totalPages; $i++) {
+    
+    // Определяем диапазон отображаемых страниц (по 2 слева и справа от текущей)
+    $range = 2;
+    $start = max(1, $currentPage - $range);
+    $end = min($totalPages, $currentPage + $range);
+    
+    // Первая страница и многоточие (если нужно)
+    if ($start > 1) {
+        $html .= '<a href="' . $baseUrl . '&' . $paramName . '=1" class="pagination-link">1</a>';
+        if ($start > 2) {
+            $html .= '<span class="pagination-link disabled">...</span>';
+        }
+    }
+    
+    // Основной блок страниц
+    for ($i = $start; $i <= $end; $i++) {
         if ($i == $currentPage) {
             $html .= '<span class="pagination-link active">' . $i . '</span>';
         } else {
             $html .= '<a href="' . $baseUrl . '&' . $paramName . '=' . $i . '" class="pagination-link">' . $i . '</a>';
         }
     }
+    
+    // Последняя страница и многоточие (если нужно)
+    if ($end < $totalPages) {
+        if ($end < $totalPages - 1) {
+            $html .= '<span class="pagination-link disabled">...</span>';
+        }
+        $html .= '<a href="' . $baseUrl . '&' . $paramName . '=' . $totalPages . '" class="pagination-link">' . $totalPages . '</a>';
+    }
+    
+    // Следующая страница
     if ($currentPage < $totalPages) {
         $html .= '<a href="' . $baseUrl . '&' . $paramName . '=' . ($currentPage + 1) . '" class="pagination-link">Следующая &raquo;</a>';
     } else {
         $html .= '<span class="pagination-link disabled">Следующая &raquo;</span>';
     }
+    
     $html .= '</div>';
     return $html;
 }
