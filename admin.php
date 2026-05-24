@@ -141,6 +141,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['change_role']) && $ro
     if (!in_array($newRole, $allowedRoles)) {
         die('Недопустимая роль');
     }
+    // Запрещаем смену роли, если целевой пользователь является администратором
+    $stmt = $pdo->prepare("SELECT role FROM users WHERE id = ?");
+    $stmt->execute([$userId]);
+    $targetRole = $stmt->fetchColumn();
+    if ($targetRole === 'admin' || $userId == $_SESSION['user_id']) {
+        $_SESSION['error'] = 'Нельзя изменить роль администратора или свою собственную роль.';
+        header('Location: /admin.php?action=users');
+        exit;
+    }
     $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
     $stmt->execute([$newRole, $userId]);
     header('Location: /admin.php?action=users');
@@ -609,20 +618,24 @@ require_once 'includes/header.php';
                         <td><?= h($user['email']) ?></td>
                         <td><?= h($user['phone']) ?></td>
                         <td>
-                            <form method="POST">
-                                <?= csrf_field() ?>
-                                <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
-                                <select class="profile-filter-form" name="new_role">
-                                    <option value="client" <?= $user['role'] == 'client' ? 'selected' : '' ?>>Клиент</option>
-                                    <option value="manager" <?= $user['role'] == 'manager' ? 'selected' : '' ?>>Менеджер</option>
-                                    <option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>Администратор</option>
-                                </select>
-                                <button style="width: 100%" type="submit" name="change_role">Сохранить</button>
-                            </form>
+                            <?php if ($user['role'] === 'admin'): ?>
+                                <span style="color: gray;">Недоступно</span>
+                            <?php else: ?>
+                                <form method="POST" style="display:inline;">
+                                    <?= csrf_field() ?>
+                                    <input type="hidden" name="user_id" value="<?= $user['id'] ?>">
+                                    <select name="new_role">
+                                        <option value="client" <?= $user['role'] == 'client' ? 'selected' : '' ?>>Клиент</option>
+                                        <option value="manager" <?= $user['role'] == 'manager' ? 'selected' : '' ?>>Менеджер</option>
+                                        <!--<option value="admin" <?= $user['role'] == 'admin' ? 'selected' : '' ?>>Администратор</option>-->
+                                    </select>
+                                    <button type="submit" name="change_role">Сохранить</button>
+                                </form>
+                            <?php endif; ?>
                         </td>
                         <td>
                             <?php if ($user['role'] === 'admin'): ?>
-                                <span>Недоступно</span>
+                                <span style="color: gray;">Недоступно</span>
                             <?php elseif (!$user['is_blocked']): ?>
                                 <form method="POST" onsubmit="return confirm('Заблокировать пользователя?')">
                                     <?= csrf_field() ?>
