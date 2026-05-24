@@ -5,6 +5,23 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 function getCityByIp($ip = null) {
+    // ===== РЕЖИМ ТЕСТИРОВАНИЯ =====
+    // Чтобы симулировать другой город, раскомментируйте нужную строку ниже
+    // или передайте параметр в URL: ?test_city=Moscow
+    
+    // ВАРИАНТ 1: Через GET-параметр (например, ?test_city=Moscow)
+    if (isset($_GET['test_city'])) {
+        $testCity = $_GET['test_city'];
+        // Сохраняем тестовый город в сессию, чтобы он применялся на всех страницах
+        $_SESSION['test_city'] = $testCity;
+        return $testCity;
+    }
+    
+    // ВАРИАНТ 2: Использовать город из сессии (для постоянного теста)
+    if (isset($_SESSION['test_city'])) {
+        return $_SESSION['test_city'];
+    }
+    // ===== КОНЕЦ РЕЖИМА ТЕСТИРОВАНИЯ =====
     if ($ip === null) {
         $ip = $_SERVER['REMOTE_ADDR'];
     }
