@@ -18,19 +18,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     
-    // Получаем пользователя вместе с полем is_blocked
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE email = ?");
-    $stmt->execute([$email]);
-    $user = $stmt->fetch();
+    // Используем функцию loginUser, которая проверяет is_verified = 1
+    $user = loginUser($pdo, $email, $password);
     
-    if ($user && password_verify($password, $user['password_hash'])) {
+    if ($user) {
         if ($user['is_blocked']) {
             $error = 'Ваш аккаунт заблокирован. Обратитесь к администратору.';
         } else {
             $_SESSION['user_id'] = $user['id'];
             $_SESSION['user_name'] = $user['name'];
             $_SESSION['role'] = $user['role'];
-            // Перенаправление в зависимости от роли
             if ($user['role'] === 'admin' || $user['role'] === 'manager') {
                 header('Location: /admin.php');
             } else {
