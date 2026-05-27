@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: localhost
--- Время создания: Май 22 2026 г., 15:11
+-- Время создания: Май 27 2026 г., 17:26
 -- Версия сервера: 8.0.45-36
 -- Версия PHP: 7.4.33
 
@@ -78,7 +78,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=79 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `orders`
@@ -94,7 +94,7 @@ INSERT INTO `orders` (`id`, `user_id`, `status`, `total_price`, `address`, `date
 (32, 4, 'В работе', 1500.00, 'ул. Жуковского, д. 22, бизнес-центр \"Невский\", оф. 12', '2026-05-25', '08:00:00', '', '2026-05-10 23:09:03', 'Офис', NULL, 'cash', 'pending', 0, NULL, NULL),
 (33, 7, 'В работе', 2500.00, 'наб. реки Фонтанки, д. 48, оф. 201', '2026-05-29', '12:00:00', '', '2026-05-10 23:11:28', 'Офис', NULL, 'cash', 'pending', 0, NULL, NULL),
 (58, 2, 'Новый', 5000.00, '1', '2026-06-06', '11:11:00', '', '2026-05-12 22:36:53', 'Квартира', NULL, 'cash', 'pending', 0, NULL, NULL),
-(59, 2, 'Новый', 8500.00, '2', '2026-06-05', '11:11:00', '', '2026-05-12 22:37:07', 'Квартира', NULL, 'cash', 'pending', 0, NULL, NULL),
+(59, 2, 'Выполнен', 8500.00, '2', '2026-06-05', '11:11:00', '', '2026-05-12 22:37:07', 'Квартира', NULL, 'cash', 'pending', 0, NULL, NULL),
 (61, 2, 'Выполнен', 5000.00, 'ыыыыыыы', '2026-06-06', '11:11:00', '', '2026-05-12 22:44:22', 'Квартира', NULL, 'cash', 'paid', 0, NULL, NULL),
 (62, 2, 'Выполнен', 4900.00, 'ddddddddddd', '2026-06-06', '11:01:00', '', '2026-05-13 08:52:58', 'Квартира', 6, 'online', 'paid', 0, NULL, NULL),
 (63, 2, 'Новый', 7200.00, 'ывыфвввввввввввввввввввв', '2026-06-06', '11:11:00', 'выфвыфвфы', '2026-05-13 09:41:58', 'Дом', NULL, 'cash', 'pending', 0, NULL, NULL),
@@ -105,7 +105,10 @@ INSERT INTO `orders` (`id`, `user_id`, `status`, `total_price`, `address`, `date
 (72, 5, 'Новый', 6984.00, 'Tyy', '2026-05-21', '17:08:00', '', '2026-05-19 20:08:11', 'Квартира', NULL, 'cash', 'pending', 0, NULL, NULL),
 (73, 5, 'Новый', 1164.00, 'Yytttttttttttttt', '2026-05-21', '19:00:00', '', '2026-05-19 20:10:14', 'Квартира', NULL, 'online', 'paid', 0, NULL, NULL),
 (74, 5, 'Новый', 2425.00, 'Yyyyyyyyyyyyyyyyy', '2026-05-21', '17:10:00', '', '2026-05-19 20:12:12', 'Квартира', NULL, 'online', 'paid', 0, NULL, NULL),
-(75, 7, 'Отменён', 8160.00, 'sssssssssssssssssss', '2026-05-22', '11:11:00', '', '2026-05-22 11:05:34', 'Квартира', NULL, 'online', 'paid', 1, '2026-05-22 11:12:53', NULL);
+(75, 7, 'Отменён', 8160.00, 'sssssssssssssssssss', '2026-05-22', '11:11:00', '', '2026-05-22 11:05:34', 'Квартира', NULL, 'online', 'paid', 1, '2026-05-22 11:12:53', NULL),
+(76, 7, 'Новый', 3552.00, 'ssssssssssssssssssssss', '2026-05-22', '11:11:00', '', '2026-05-22 13:18:42', 'Квартира', NULL, 'cash', 'pending', 0, NULL, NULL),
+(77, 31, 'Новый', 8500.00, 'ssssssssssssssssssssssssssssssss', '2026-05-25', '11:11:00', '', '2026-05-24 16:15:05', 'Квартира', 9, 'online', 'pending', 0, NULL, NULL),
+(78, 7, 'Выполнен', 8500.00, 'пос. Парголово, ул. Луговая, д. 15', '2026-05-26', '11:11:00', '', '2026-05-25 10:57:56', 'Дом', NULL, 'cash', 'pending', 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -122,7 +125,7 @@ CREATE TABLE IF NOT EXISTS `order_items` (
   PRIMARY KEY (`id`),
   KEY `order_id` (`order_id`),
   KEY `service_id` (`service_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=132 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `order_items`
@@ -160,7 +163,13 @@ INSERT INTO `order_items` (`id`, `order_id`, `service_id`, `quantity`, `price`) 
 (128, 73, 18, 1, 1200.00),
 (129, 74, 4, 1, 2500.00),
 (130, 75, 2, 1, 3500.00),
-(131, 75, 3, 1, 5000.00);
+(131, 75, 3, 1, 5000.00),
+(132, 76, 4, 1, 2500.00),
+(133, 76, 5, 1, 1200.00),
+(134, 77, 2, 1, 3500.00),
+(135, 77, 3, 1, 5000.00),
+(136, 78, 2, 1, 3500.00),
+(137, 78, 3, 1, 5000.00);
 
 -- --------------------------------------------------------
 
@@ -177,14 +186,17 @@ CREATE TABLE IF NOT EXISTS `password_resets` (
   PRIMARY KEY (`id`),
   KEY `user_id` (`user_id`),
   KEY `token` (`token`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `password_resets`
 --
 
 INSERT INTO `password_resets` (`id`, `user_id`, `token`, `expires_at`, `created_at`) VALUES
-(1, 4, '6744c6f01b421bc824b149c916945d1cf03c84abe1786ecc6e11da11479e8813', '2026-05-18 23:00:16', '2026-05-18 19:00:16');
+(1, 4, '6744c6f01b421bc824b149c916945d1cf03c84abe1786ecc6e11da11479e8813', '2026-05-18 23:00:16', '2026-05-18 19:00:16'),
+(4, 6, '9b741b7403e5887c3ca59685c7d515e948115cbc8ee762d8cdade7c7618e036a', '2026-05-24 19:57:10', '2026-05-24 15:57:10'),
+(5, 2, '03d23535c102b78e9e76188e65283973bec83e2424e689535143d9f155065c32', '2026-05-24 20:06:31', '2026-05-24 16:06:31'),
+(7, 31, '210b7410a3397c0ca0bde9ffe69271bc6a0dc912bccabd3034ca1028fe9684d0', '2026-05-24 20:07:16', '2026-05-24 16:07:16');
 
 -- --------------------------------------------------------
 
@@ -206,22 +218,22 @@ CREATE TABLE IF NOT EXISTS `reviews` (
   KEY `user_id` (`user_id`),
   KEY `order_id` (`order_id`),
   KEY `employee_id` (`employee_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `reviews`
 --
 
 INSERT INTO `reviews` (`id`, `user_id`, `order_id`, `rating`, `text`, `moderation_status`, `created_at`, `employee_rating`, `employee_id`) VALUES
-(16, 4, 31, 5, 'Класс', 'approved', '2026-05-11 20:47:01', 5, 9),
+(16, 4, 31, 5, 'Класс!', 'approved', '2026-05-11 20:47:01', 5, 9),
 (17, 5, 30, 4, 'Норм', 'approved', '2026-05-11 20:47:22', 4, 10),
 (18, 5, 29, 5, 'Можно было и лучше', 'approved', '2026-05-11 20:47:38', 5, 11),
 (19, 6, 28, 5, 'Шустро и эффективно убрались', 'approved', '2026-05-11 20:48:13', 5, 11),
-(20, 6, 27, 3, 'Чё-то накосячили и сломали фен...', 'approved', '2026-05-11 20:48:43', 2, 5),
-(21, 7, 33, 5, 'Молодцы! Орлы!', 'approved', '2026-05-11 20:49:36', 5, 7),
-(22, 7, 26, 1, 'УЖАСНО!', 'approved', '2026-05-11 20:50:11', 1, 8),
+(20, 6, 27, 3, 'Накосячили и сломали фен!', 'approved', '2026-05-11 20:48:43', 2, 5),
 (24, 2, 62, 5, 'very good', 'rejected', '2026-05-13 08:54:39', 4, 6),
-(25, 2, 61, 5, 'Супер-пупер!', 'rejected', '2026-05-13 15:46:33', 4, NULL);
+(25, 2, 61, 5, 'Супер-пупер!', 'rejected', '2026-05-13 15:46:33', 4, NULL),
+(26, 7, 26, 5, 'Вау, хороши!', 'pending', '2026-05-22 19:05:58', 4, NULL),
+(28, 7, 78, 5, 'Классно!', 'approved', '2026-05-25 11:10:38', 5, NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +285,7 @@ CREATE TABLE IF NOT EXISTS `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `unique_email` (`email`),
   KEY `verification_token` (`verification_token`)
-) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Дамп данных таблицы `users`
@@ -287,9 +299,8 @@ INSERT INTO `users` (`id`, `email`, `password_hash`, `name`, `phone`, `role`, `i
 (6, 'Voka@mail.ru', '$2y$12$JbvrNMl8wH5M/.619UM95.1n4wh0pgozO51ASnhDpxwo4DFvRH7z2', 'Вова', '+7 (965) 759-71-42', 'client', 1, 0, NULL, NULL, NULL, '2026-05-10 22:42:08'),
 (7, 'Masha@yandex.ru', '$2y$12$262k2Ozz6o3txevGKf8iROmkV/vhDCckBLTfs.UrpMEG8ZJpKG4BO', 'Маша', '+7 (965) 759-71-42', 'client', 1, 0, NULL, NULL, NULL, '2026-05-10 22:42:40'),
 (17, 'kek1@mail.ru', '$2y$12$r2SMoMr2jgauLNlS.ks.POcIYbnNvBCD/DNJVyKXxfOb66IbtNdZi', 'Евгеша', '+7 (906) 265-60-52', 'client', 1, 0, NULL, NULL, NULL, '2026-05-18 18:07:30'),
-(20, 'pro212@mail.ru', '$2y$12$F2V5JG9/aZHKVLYhuyTn5eH6RUO2fIaTwhIHriXRPbAiomeE3MjSe', 'pro212@mail.ru', '+7 (111) 111-11-11', 'client', 0, 0, '4ea6e831af598a3f1d4b3fad174d7bc19f8aee4576637ca3a8bf768099390383', '2026-05-20 16:14:27', '2026-05-19 16:14:27', '2026-05-19 13:14:27'),
-(26, 'slava.kbe@yandex.ru', '$2y$12$52lNzrbE7pR/GWaqOUoSZuQY6HIaIZQDZwYgrQ33H9UxfcoFlaJh.', 'slava.kbe@yandex.ru', '+7 (111) 111-11-11', 'client', 0, 0, 'd0bb2c7014c54d5678fc87979791018316b4b8ea5c05ce6423bf089f10a76bb5', '2026-05-20 17:17:44', '2026-05-19 17:17:44', '2026-05-19 14:17:44'),
-(28, 'slava.kbem@mail.ru', '$2y$12$ZbqdN4AnfZdUVOG4YBhCIOF1k7dNBoZ9d7Vc8YZNV0cXEgk05z9ny', 'slava.kbem@mail.ru', '+7 (111) 111-11-11', 'client', 0, 0, '0647b4096aafa2b4f7d18ffbc3ef5570f7aa81bf4de906e112561aa3a771d735', '2026-05-20 17:54:07', '2026-05-19 17:54:07', '2026-05-19 14:54:07');
+(30, 'ssdsa@mail.ru', '$2y$12$a8V0vAP4YJz9LOdZh0Yf7OCh.MndCKCfEXnXDYIFSco7EDZB1VTkK', 'ssdsa@mail.ru', '71111111111', 'client', 0, 0, 'afb82c84c9492212953d8bf00a8fd493cbde1e8565429eeda048dbbabd8ae4ad', '2026-05-25 19:03:36', '2026-05-24 19:03:36', '2026-05-24 16:03:36'),
+(31, 'slava.kbem@mail.ru', '$2y$12$jOu6rvOUf/t/TATWP47IQuRkyIRRj2FMXyiuoF/qdh7c2rFtILEB6', 'slava.kbem@mail.ru', '72222222222', 'client', 1, 0, NULL, NULL, '2026-05-24 19:05:45', '2026-05-24 16:05:45');
 
 --
 -- Ограничения внешнего ключа сохраненных таблиц
