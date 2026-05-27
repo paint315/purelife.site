@@ -85,7 +85,13 @@ $userDiscount = isset($_SESSION['user_id']) ? getUserDiscount($pdo, $_SESSION['u
                                     </div>
                                 </div>
                                 <div class="review-text">
-                                    "<?= h($review['text']) ?>"
+                                    "<?php 
+                                        $text = $review['text'];
+                                        if (mb_strlen($text) > 100) {
+                                            $text = mb_substr($text, 0, 100) . '...';
+                                        }
+                                        echo h($text);
+                                        ?>>"
                                 </div>
                                 <div class="review-date">
                                     <?= date('d.m.Y', strtotime($review['created_at'])) ?>

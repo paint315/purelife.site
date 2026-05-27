@@ -308,6 +308,8 @@ nav a:hover {
     margin: 0 15px;
     box-shadow: 0 4px 20px rgba(0,0,0,0.08);
     transition: transform 0.3s ease;
+    height: auto;
+    min-height: 150px;
 }
 .review-slide:hover {
     transform: translateY(-5px);
@@ -335,6 +337,9 @@ nav a:hover {
     color: #334155;
     margin-bottom: 1rem;
     font-style: italic;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 .review-text::before {
     content: "«";
@@ -1350,7 +1355,7 @@ footer {
 }
 
 .about-license-img {
-    width: 200px;
+    width: 450px;
     margin: 10px;
 }
 

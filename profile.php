@@ -338,7 +338,7 @@ require_once 'includes/header.php';
                                         <form method="POST" style="padding: 15px; background: #f9f9f9; border-radius: 8px; margin-top: 10px;">
                                             <?= csrf_field() ?>
                                             <input type="hidden" name="order_id" value="<?= $order['id'] ?>">
-                                            <textarea name="review_text" placeholder="Ваш отзыв" rows="3" style="width: 100%;" maxlength="10" required></textarea>
+                                            <textarea name="review_text" placeholder="Ваш отзыв" rows="3" style="width: 100%;" maxlength="100" required></textarea>
                                             <div style="margin: 10px 0;">
                                                 <label>Оценка уборки (1-5): 
                                                     <input type="number" name="rating" min="1" max="5" required style="width: 80px;">
